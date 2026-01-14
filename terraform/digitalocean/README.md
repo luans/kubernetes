@@ -1,4 +1,4 @@
-# 🌊 DigitalOcean Kubernetes Terraform Infrastructure
+# DigitalOcean Kubernetes Terraform Infrastructure
 
 Terraform configuration for provisioning a fully-featured Kubernetes cluster on DigitalOcean with service mesh, observability, and GitOps capabilities.
 
