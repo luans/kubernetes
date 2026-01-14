@@ -22,5 +22,6 @@ Here is how I organized this mess:
 ├── 📂 networking/        # Ingress, Services, and network configurations
 ├── 📂 observability/     # Keeping an eye on things (Prometheus/Grafana)
 ├── 📂 security/          # Breaking and fixing permission things
+├── 📂 terraform/         # Terraform configurations and examples
 └── 📂 troubleshooting/   # Notes on stuff that crashed
 ```
