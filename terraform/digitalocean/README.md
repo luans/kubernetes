@@ -88,7 +88,7 @@ terraform output load_balancer_ip
 
 Use this IP to configure your DNS A records.
 
-## 🗑️ Destroying Infrastructure
+## Destroying Infrastructure
 
 To destroy all resources:
 
