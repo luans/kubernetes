@@ -1,0 +1,2 @@
+replicaCount: 1
+appMessage: "Environment: Development (Debug Mode On)"

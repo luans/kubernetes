@@ -1,0 +1,27 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/luans/kubernetes.git
+    targetRevision: HEAD
+    path: helm-charts/app-of-apps-example
+
+environments:
+  - name: dev
+  - name: uat
+  - name: prod
+
+applications:
+  - name: backend-api
+    path: charts/backend
+
+  #- name: frontend-ui
+  #  path: charts/frontend
+  #  exclude:
+  #    - prod
+#
+  #- name: debug-tools
+  #  path: charts/debug-tools
+  #  exclude:
+  #    - uat
+  #    - prod
