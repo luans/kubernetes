@@ -2,7 +2,7 @@
 
 Terraform configuration for provisioning a fully-featured Kubernetes cluster on DigitalOcean with service mesh, observability, and GitOps capabilities.
 
-## 📋 Overview
+## Overview
 
 This Terraform project creates and manages:
 
@@ -14,17 +14,17 @@ This Terraform project creates and manages:
 | **GitOps** | ArgoCD for continuous delivery |
 | **Load Balancer** | DigitalOcean managed load balancer |
 
-## 📁 File Structure
+## File Structure
 
-```
+```text
 digitalocean/
-├── backend.tf   # Remote state configuration (DigitalOcean Spaces)
-├── provider.tf  # Provider configurations (DO, Helm, Kubernetes)
-├── main.tf      # Main infrastructure definitions
-└── README.md    # This file
+├── 📂 backend.tf   # Remote state configuration (DigitalOcean Spaces)
+├── 📂 provider.tf  # Provider configurations (DO, Helm, Kubernetes)
+├── 📂 main.tf      # Main infrastructure definitions
+└── 📂 README.md    # This file
 ```
 
-## 🔧 Prerequisites
+## Prerequisites
 
 Before running this Terraform configuration, ensure you have:
 
@@ -33,7 +33,7 @@ Before running this Terraform configuration, ensure you have:
 3. **DigitalOcean Spaces credentials** (for remote state)
 4. **doctl** CLI (optional, for cluster access)
 
-## 🔐 Environment Variables
+## Environment Variables
 
 Set the following environment variables before running Terraform:
 
@@ -49,7 +49,7 @@ export AWS_SECRET_ACCESS_KEY="your-spaces-secret-key"
 > [!TIP]
 > You can also use a `.env` file with [direnv](https://direnv.net/) for automatic environment loading.
 
-## 🚀 How to Execute
+## How to Execute
 
 ### 1. Initialize Terraform
 
@@ -99,7 +99,7 @@ terraform destroy
 > [!CAUTION]
 > This will **permanently delete** the Kubernetes cluster and all associated resources. Make sure to backup any important data!
 
-## 🏗️ Infrastructure Components
+## Infrastructure Components
 
 ### Kubernetes Cluster
 
@@ -159,7 +159,7 @@ The DigitalOcean Load Balancer is configured to:
 - Forward port 443 → NodePort 30443 (HTTPS)
 - Health check on port 30021 (Istio status port)
 
-## 💡 Tips & Best Practices
+## Tips & Best Practices
 
 ### State Management
 
@@ -242,13 +242,13 @@ terraform state rm helm_release.prometheus_stack
 terraform apply
 ```
 
-## 📊 Outputs
+## Outputs
 
 | Output | Description |
 |--------|-------------|
 | `load_balancer_ip` | Public IP of the Load Balancer (point your DNS here) |
 
-## 🔗 Useful Links
+## Useful Links
 
 - [DigitalOcean Terraform Provider](https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs)
 - [Helm Terraform Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs)
