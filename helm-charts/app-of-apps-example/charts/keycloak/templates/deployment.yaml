@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { .Chart.Name } }
+  name: {{ .Chart.Name }}
   labels:
-    app: { { .Chart.Name } }
+    app: {{ .Chart.Name }}
 spec:
-  replicas: { { .Values.replicaCount } }
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: { { .Chart.Name } }
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: { { .Chart.Name } }
+        app: {{ .Chart.Name }}
     spec:
       containers:
-        - name: { { .Chart.Name } }
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: { { .Values.image.pullPolicy } }
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           args: ["start"]
           ports:
             - name: http
@@ -31,9 +31,9 @@ spec:
             - name: KC_PROXY
               value: "edge"
             - name: KEYCLOAK_ADMIN
-              value: { { .Values.keycloak.admin.username } }
+              value: {{ .Values.keycloak.admin.username }}
             - name: KEYCLOAK_ADMIN_PASSWORD
-              value: { { .Values.keycloak.admin.password } }
+              value: {{ .Values.keycloak.admin.password }}
             - name: KC_HEALTH_ENABLED
               value: "true"
           readinessProbe:
