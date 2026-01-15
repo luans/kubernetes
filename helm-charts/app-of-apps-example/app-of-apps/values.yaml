@@ -4,16 +4,16 @@ spec:
   source:
     repoURL: https://github.com/luans/kubernetes.git
     targetRevision: HEAD
-    path: helm-charts/app-of-apps-example/app-of-apps
+    #path: helm-charts/app-of-apps-example/app-of-apps
 
-environments:
-  - name: dev
-  - name: uat
-  - name: prod
+environments: dev
 
 applications:
   - name: backend-api
     path: helm-charts/app-of-apps-example/charts/backend
+    exclude:
+      - prod
+      - uat
 
   #- name: frontend-ui
   #  path: charts/frontend

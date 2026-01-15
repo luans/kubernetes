@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps-uat
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/luans/kubernetes.git
+    path: helm-charts/app-of-apps-example/app-of-apps
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-uat.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd

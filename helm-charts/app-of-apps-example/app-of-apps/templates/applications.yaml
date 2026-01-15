@@ -1,14 +1,14 @@
-{{- range $env := .Values.environments }}
-{{- range $app := $.Values.applications }}
+{{- $currentEnv := .Values.environment }}
+{{- range $app := .Values.applications }}
 
-{{- /* Exclusion Logic: Checks if the current environment is in the blocklist */ -}}
+{{- /* Exclusion logic */ -}}
 {{- $excludedEnvs := default list $app.exclude -}}
-{{- if not (has $env.name $excludedEnvs) }}
+{{- if not (has $currentEnv $excludedEnvs) }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ $app.name }}-{{ $env.name }}
+  name: {{ $app.name }}-{{ $currentEnv }}
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -21,16 +21,15 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-        - values-{{ $env.name }}.yaml
+        - values-{{ $currentEnv }}.yaml
   destination:
     server: {{ $.Values.spec.destination.server }}
-    namespace: {{ $env.name }}
+    namespace: {{ $currentEnv }}
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-{{- end }}
 {{- end }}
 {{- end }}
