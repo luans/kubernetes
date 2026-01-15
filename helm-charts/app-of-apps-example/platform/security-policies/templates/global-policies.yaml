@@ -1,0 +1,40 @@
+{{- range $svc := .Values.services }}
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: {{ $svc.name }}-policy
+  namespace: {{ $svc.namespace | default $.Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      {{- toYaml $svc.selector | nindent 6 }}
+
+  action: ALLOW
+
+  rules:
+  {{- range $svc.policies }}
+    - from:
+      {{- if .public }}
+        - source: {}
+      {{- else }}
+        - source:
+            when:
+            - key: {{ $.Values.jwtRuleKey }}
+              values:
+              {{- range .allowedRoles }}
+                - {{ . | quote }}
+              {{- end }}
+      {{- end }}
+      to:
+        - operation:
+            paths:
+            {{- range .paths }}
+              - {{ . | quote }}
+            {{- end }}
+            methods:
+            {{- range .methods }}
+              - {{ . | quote }}
+            {{- end }}
+  {{- end }}
+{{- end }}
