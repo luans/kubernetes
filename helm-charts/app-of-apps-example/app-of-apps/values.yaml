@@ -4,7 +4,7 @@ spec:
   source:
     repoURL: https://github.com/luans/kubernetes.git
     targetRevision: HEAD
-    path: helm-charts/app-of-apps-example
+    path: helm-charts/app-of-apps-example/app-of-apps
 
 environments:
   - name: dev
