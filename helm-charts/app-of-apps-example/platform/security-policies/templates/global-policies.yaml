@@ -15,17 +15,6 @@ spec:
   rules:
   {{- range $svc.policies }}
     - 
-      {{- if not .public }}
-      from:
-      - source:
-          when:
-          - key: {{ $.Values.jwtRuleKey }}
-            values:
-            {{- range .allowedRoles }}
-              - {{ . | quote }}
-            {{- end }}
-      {{- end }}
-      
       to:
         - operation:
             paths:
@@ -36,5 +25,16 @@ spec:
             {{- range .methods }}
               - {{ . | quote }}
             {{- end }}
+
+      {{- if and (not .public) (not (empty .allowedRoles)) }}
+      from:
+      - source:
+          when:
+          - key: {{ $.Values.jwtRuleKey | default "request.auth.claims[roles]" }}
+            values:
+            {{- range .allowedRoles }}
+              - {{ . | quote }}
+            {{- end }}
+      {{- end }}
   {{- end }}
 {{- end }}
