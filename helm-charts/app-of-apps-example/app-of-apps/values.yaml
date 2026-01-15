@@ -15,13 +15,19 @@ applications:
       - prod
       - uat
 
+  - name: keycloak
+    path: helm-charts/app-of-apps-example/charts/keycloak
+    exclude:
+      - prod
+      - uat
+
   #- name: frontend-ui
   #  path: charts/frontend
   #  exclude:
   #    - prod
 #
-  #- name: debug-tools
-  #  path: charts/debug-tools
-  #  exclude:
-  #    - uat
-  #    - prod
+#- name: debug-tools
+#  path: charts/debug-tools
+#  exclude:
+#    - uat
+#    - prod

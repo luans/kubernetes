@@ -1,0 +1,14 @@
+replicaCount: 1
+image:
+  repository: quay.io/keycloak/keycloak
+  pullPolicy: IfNotPresent
+  tag: "26.0.0"
+service:
+  type: ClusterIP
+  port: 80
+resources: {}
+keycloak:
+  hostname: keycloak.example.com
+  admin:
+    username: admin
+    password: admin

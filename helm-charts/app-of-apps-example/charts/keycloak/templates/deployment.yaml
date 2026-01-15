@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: { { .Chart.Name } }
+  labels:
+    app: { { .Chart.Name } }
+spec:
+  replicas: { { .Values.replicaCount } }
+  selector:
+    matchLabels:
+      app: { { .Chart.Name } }
+  template:
+    metadata:
+      labels:
+        app: { { .Chart.Name } }
+    spec:
+      containers:
+        - name: { { .Chart.Name } }
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: { { .Values.image.pullPolicy } }
+          args: ["start"]
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: KC_HOSTNAME
+              value: "https://{{ .Values.keycloak.hostname }}"
+            - name: KC_HTTP_ENABLED
+              value: "true"
+            - name: KC_PROXY
+              value: "edge"
+            - name: KEYCLOAK_ADMIN
+              value: { { .Values.keycloak.admin.username } }
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: { { .Values.keycloak.admin.password } }
+            - name: KC_HEALTH_ENABLED
+              value: "true"
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 9000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 9000
+            initialDelaySeconds: 70
+            periodSeconds: 20
