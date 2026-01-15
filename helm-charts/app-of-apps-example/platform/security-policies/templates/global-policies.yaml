@@ -9,9 +9,7 @@ spec:
   selector:
     matchLabels:
       {{- toYaml $svc.selector | nindent 6 }}
-
   action: ALLOW
-
   rules:
   {{- range $svc.policies }}
     - 
@@ -25,16 +23,13 @@ spec:
             {{- range .methods }}
               - {{ . | quote }}
             {{- end }}
-
       {{- if and (not .public) (not (empty .allowedRoles)) }}
-      from:
-      - source:
-          when:
-          - key: {{ $.Values.jwtRuleKey | default "request.auth.claims[roles]" }}
-            values:
-            {{- range .allowedRoles }}
-              - {{ . | quote }}
-            {{- end }}
+      when:
+      - key: {{ $.Values.jwtRuleKey | default "request.auth.claims[roles]" }}
+        values:
+        {{- range .allowedRoles }}
+          - {{ . | quote }}
+        {{- end }}
       {{- end }}
   {{- end }}
 {{- end }}
