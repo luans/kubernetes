@@ -14,18 +14,18 @@ spec:
 
   rules:
   {{- range $svc.policies }}
-    - from:
-      {{- if .public }}
-        - source: {}
-      {{- else }}
-        - source:
-            when:
-            - key: {{ $.Values.jwtRuleKey }}
-              values:
-              {{- range .allowedRoles }}
-                - {{ . | quote }}
-              {{- end }}
+    - 
+      {{- if not .public }}
+      from:
+      - source:
+          when:
+          - key: {{ $.Values.jwtRuleKey }}
+            values:
+            {{- range .allowedRoles }}
+              - {{ . | quote }}
+            {{- end }}
       {{- end }}
+      
       to:
         - operation:
             paths:
