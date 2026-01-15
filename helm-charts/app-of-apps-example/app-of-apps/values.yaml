@@ -13,7 +13,7 @@ environments:
 
 applications:
   - name: backend-api
-    path: charts/backend
+    path: helm-charts/app-of-apps-example/charts/backend
 
   #- name: frontend-ui
   #  path: charts/frontend
