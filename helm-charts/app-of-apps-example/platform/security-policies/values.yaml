@@ -1,1 +1,16 @@
 jwtRuleKey: "request.auth.claims[roles]"
+
+services:
+  - name: backend-api
+    selector:
+      app: backend-api
+    policies:
+      - name: admin-access
+        allowedRoles: ["super-admin", "dev-lead"]
+        paths: ["/admin*", "/db-migration"]
+        methods: ["POST", "DELETE"]
+      
+      - name: public-read
+        public: true
+        paths: ["/products", "/public/*"]
+        methods: ["GET"]
