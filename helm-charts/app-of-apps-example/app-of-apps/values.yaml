@@ -23,9 +23,15 @@ applications:
 
   - name: cluster-security
     path: helm-charts/app-of-apps-example/platform/security-policies
+    exclude:
+      - prod
+      - uat
 
   - name: cluster-networking
     path: helm-charts/app-of-apps-example/platform/networking
+    exclude:
+      - prod
+      - uat
 
   #- name: frontend-ui
   #  path: charts/frontend
