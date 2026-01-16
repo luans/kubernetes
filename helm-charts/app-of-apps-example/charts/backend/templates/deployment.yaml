@@ -27,5 +27,3 @@ spec:
               value: {{ .Values.appMessage | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-
-{{- include "common.istio.virtualservice" . -}}
