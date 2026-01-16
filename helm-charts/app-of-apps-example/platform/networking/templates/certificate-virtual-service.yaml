@@ -14,6 +14,6 @@ spec:
         exact: /
     route:
     - destination:
-        host: modernatec
+        host: backend-api
         port:
-          number: 8080
+          number: 80
