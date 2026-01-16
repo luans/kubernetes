@@ -13,6 +13,7 @@ spec:
       protocol: HTTP
     hosts:
     - "demo.modernatec.com.br"
+    - "*"
 
   - port:
       number: 443
