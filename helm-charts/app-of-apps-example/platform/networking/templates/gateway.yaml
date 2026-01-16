@@ -16,12 +16,12 @@ spec:
     #tls:
     #  httpsRedirect: true
 
-  - port:
-      number: 443
-      name: https
-      protocol: HTTPS
-    hosts:
-    - "demo.modernatec.com.br"
-    tls:
-      mode: SIMPLE
-      credentialName: moderna-credential
+  #- port:
+  #    number: 443
+  #    name: https
+  #    protocol: HTTPS
+  #  hosts:
+  #  - "demo.modernatec.com.br"
+  #  tls:
+  #    mode: SIMPLE
+  #    credentialName: moderna-credential
