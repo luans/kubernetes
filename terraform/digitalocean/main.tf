@@ -60,6 +60,8 @@ resource "helm_release" "istio_ingress" {
     <<EOF
 service:
   type: NodePort
+  selector:
+    istio: ingress
   ports:
   - name: status-port
     port: 15021
