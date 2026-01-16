@@ -194,3 +194,21 @@ output "load_balancer_ip" {
   value       = digitalocean_loadbalancer.public_lb.ip
   description = "Aponte seu domínio (A Record) para este IP"
 }
+
+
+# Install cert-manager
+resource "helm_release" "cert_manager" {
+  name             = "cert-manager"
+  repository       = "https://charts.jetstack.io"
+  chart            = "cert-manager"
+  namespace        = "cert-manager"
+  create_namespace = true
+  version          = "v1.13.3"
+
+  set = [
+    {
+      name  = "installCRDs"
+      value = "true"
+    }
+  ]
+}
