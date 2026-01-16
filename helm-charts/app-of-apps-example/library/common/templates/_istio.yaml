@@ -12,7 +12,7 @@ spec:
     - {{ . | quote }}
   {{- end }}
   gateways:
-    - istio-system/main-gateway
+    - istio-ingress/main-gateway
   http:
   - match:
     - uri:
