@@ -1,1 +1,1 @@
-{{- include "common.istio.virtualservice" . -}}
+#{{- include "common.istio.virtualservice" . -}}
