@@ -29,18 +29,18 @@ spec:
     matchLabels:
       istio: main-gateway
   action: DENY
-  rules:
-  - to:
-    - operation:
-        paths: ["/"]
-
-  - from:
-    - source:
-        requestPrincipals: ["*"]
-    when:
-    - key: request.auth.claims[groups]
-      values: ["admin"]
-    to:
-    - operation:
-        paths: ["/"]
-        methods: ["GET", "POST", "PUT", "DELETE"]
+  #rules:
+  #- to:
+  #  - operation:
+  #      paths: ["/"]
+#
+  #- from:
+  #  - source:
+  #      requestPrincipals: ["*"]
+  #  when:
+  #  - key: request.auth.claims[groups]
+  #    values: ["admin"]
+  #  to:
+  #  - operation:
+  #      paths: ["/"]
+  #      methods: ["GET", "POST", "PUT", "DELETE"]
