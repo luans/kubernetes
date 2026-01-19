@@ -29,6 +29,7 @@ spec:
     matchLabels:
       istio: main-gateway
   action: DENY
+  rules: []
   #rules:
   #- to:
   #  - operation:
