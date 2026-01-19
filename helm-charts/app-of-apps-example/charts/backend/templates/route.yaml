@@ -28,7 +28,7 @@ spec:
   selector:
     matchLabels:
       istio: main-gateway
-  action: ALLOW
+  action: DENY
   rules:
   - to:
     - operation:
