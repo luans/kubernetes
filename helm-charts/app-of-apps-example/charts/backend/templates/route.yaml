@@ -27,7 +27,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      istio: ingress-gateway
+      istio: main-gateway
   action: ALLOW
   rules:
   - to:
