@@ -13,7 +13,7 @@ spec:
   - matches:
     - path:
         type: PathPrefix
-        value: /api
+        value: /
     backendRefs:
     - name: backend-api
       port: 80
