@@ -6,7 +6,7 @@ metadata:
 spec:
   parentRefs:
   - name: main-gateway
-    namespace: istio-ingress
+    namespace: {{ .Values.namespace }}
   hostnames:
   - "demo.modernatec.com.br"
   rules:
@@ -30,10 +30,6 @@ spec:
       istio: main-gateway
   action: ALLOW
   rules:
-  #- to:
-  #  - operation:
-  #      paths: ["/"]
-
   - from:
     - source:
         requestPrincipals: ["*"]
