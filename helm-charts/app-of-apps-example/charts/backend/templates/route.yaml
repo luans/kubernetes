@@ -32,7 +32,7 @@ spec:
   rules:
     - from:
       - source:
-        notRequestPrincipals: ["*"]
+          notRequestPrincipals: ["*"]
 #  action: ALLOW
 #  rules:
 #  - to:
