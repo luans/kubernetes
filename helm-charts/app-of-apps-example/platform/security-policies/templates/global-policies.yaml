@@ -1,0 +1,12 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: keycloak-jwt-validator
+  namespace: istio-ingress
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  jwtRules:
+  - issuer: "https://seu-keycloak.com/realms/seu-realm"
+    jwksUri: "https://seu-keycloak.com/realms/seu-realm/protocol/openid-connect/certs"
