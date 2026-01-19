@@ -17,3 +17,30 @@ spec:
     backendRefs:
     - name: backend-api
       port: 80
+
+---
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: require-admin-role
+  namespace: istio-ingress
+spec:
+  selector:
+    matchLabels:
+      istio: ingress-gateway
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        paths: ["/"]
+
+  - from:
+    - source:
+        requestPrincipals: ["*"]
+    when:
+    - key: request.auth.claims[groups]
+      values: ["admin"]
+    to:
+    - operation:
+        paths: ["/admin", "/admin/*"]
+        methods: ["GET", "POST", "PUT", "DELETE"]
