@@ -43,5 +43,5 @@ spec:
       values: ["admin"]
     to:
     - operation:
-        paths: ["/admin/*"]
+        paths: ["/*"]
         methods: ["GET", "POST", "PUT", "DELETE"]
