@@ -41,6 +41,13 @@ resource "helm_release" "istiod" {
   atomic           = true
 
   depends_on = [helm_release.istio_base]
+
+  set = [
+    {
+      name  = "pilot.env.PILOT_ENABLE_GATEWAY_API"
+      value = "true"
+    }
+  ]
 }
 
 ## Istio Ingress Gateway

@@ -1,26 +1,26 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: main-gateway
   namespace: istio-ingress
 spec:
-  selector:
-    istio: ingress
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "demo.modernatec.com.br"
-    - "*"
-
-  - port:
-      number: 443
-      name: https
-      protocol: HTTPS
-    hosts:
-    - "demo.modernatec.com.br"
+  gatewayClassName: istio
+  listeners:
+  - name: http
+    port: 80
+    protocol: HTTP
+    hostname: "*"
+    allowedRoutes:
+      namespaces:
+        from: All
+  - name: https
+    port: 443
+    protocol: HTTPS
+    hostname: "demo.modernatec.com.br"
+    allowedRoutes:
+      namespaces:
+        from: All
     tls:
-      mode: SIMPLE
-      credentialName: moderna-credential
+      mode: Terminate
+      certificateRefs:
+      - name: moderna-credential

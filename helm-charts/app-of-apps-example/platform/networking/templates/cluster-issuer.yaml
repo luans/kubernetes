@@ -4,11 +4,15 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-    email: "luan.silva@modernatec.com.br"
+    email: luan.silva@modernatec.com.br
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-account-key
     solvers:
     - http01:
-        ingress:
-          class: istio
+        gatewayHTTPRoute:
+          parentRefs:
+          - name: main-gateway
+            namespace: istio-ingress
+            kind: Gateway
+            group: gateway.networking.k8s.io
