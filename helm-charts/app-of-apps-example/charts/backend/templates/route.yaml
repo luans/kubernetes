@@ -28,17 +28,22 @@ spec:
   selector:
     matchLabels:
       istio: main-gateway
-  action: ALLOW
+  action: DENY
   rules:
-  - to:
-    - operation:
-        paths: ["/health"]
-        methods: ["GET"]
-
-  - from:
-    - source:
-        requestPrincipals: ["*"]
-    to:
-    - operation:
-        paths: ["/*"]
-        methods: ["GET", "POST", "PUT", "DELETE"]
+    - from:
+      - source:
+        notRequestPrincipals: ["*"]
+#  action: ALLOW
+#  rules:
+#  - to:
+#    - operation:
+#        paths: ["/health"]
+#        methods: ["GET"]
+#
+#  - from:
+#    - source:
+#        requestPrincipals: ["*"]
+#    to:
+#    - operation:
+#        paths: ["/*"]
+#        methods: ["GET", "POST", "PUT", "DELETE"]
