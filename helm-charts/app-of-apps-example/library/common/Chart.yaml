@@ -1,5 +1,0 @@
-apiVersion: v2
-name: common-library
-description: Library for common templates
-type: library
-version: 1.0.0

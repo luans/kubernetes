@@ -1,5 +1,0 @@
-apiVersion: v2
-name: security-policies
-description: Regras globais de acesso (RBAC/AuthZ) do Istio
-type: application
-version: 1.0.0
