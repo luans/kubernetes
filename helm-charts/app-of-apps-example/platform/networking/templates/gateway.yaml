@@ -3,6 +3,10 @@ kind: Gateway
 metadata:
   name: main-gateway
   namespace: istio-ingress
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "15021"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/healthz/ready"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
 spec:
   gatewayClassName: istio
   listeners:
