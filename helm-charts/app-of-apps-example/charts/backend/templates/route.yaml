@@ -27,7 +27,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      istio: main-gateway
+      gateway.networking.k8s.io/gateway-name: main-gateway
   action: DENY
   rules:
     - from:
