@@ -6,7 +6,8 @@ metadata:
 spec:
   selector:
     matchLabels:
-      istio: main-gateway
+      gateway.networking.k8s.io/gateway-name: main-gateway
   jwtRules:
-  - issuer: "https://seu-keycloak.com/realms/seu-realm"
-    jwksUri: "https://seu-keycloak.com/realms/seu-realm/protocol/openid-connect/certs"
+  - issuer: "https://auth-dev.modernatec.com.br/realms/poc-realm"
+    jwksUri: "https://auth-dev.modernatec.com.br/realms/poc-realm/protocol/openid-connect/certs"
+    forwardOriginalToken: true
