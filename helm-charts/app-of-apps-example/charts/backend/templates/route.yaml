@@ -23,7 +23,7 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: require-admin-role
-  namespace: {{ .Values.namespace }}
+  namespace: istio-ingress
 spec:
   selector:
     matchLabels:
