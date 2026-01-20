@@ -1,19 +1,18 @@
-{{- $currentEnv := .Values.environment }}
-{{- range $app := .Values.applications }}
-
-{{- /* Exclusion logic */ -}}
-{{- $excludedEnvs := default list $app.exclude -}}
-{{- if not (has $currentEnv $excludedEnvs) }}
+{{- range $env := .Values.environments }}
+  {{- range $app := $.Values.applications }}
+    {{- $excludedEnvs := default list $app.exclude -}}
+    {{- if not (has $env $excludedEnvs) }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ $app.name }}-{{ $currentEnv }}
+  name: {{ $app.name }}-{{ $env }}
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
+  project: {{ $env }}
+  
   source:
     repoURL: {{ $.Values.spec.source.repoURL }}
     path: {{ $app.path }}
@@ -21,15 +20,18 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-        - values-{{ $currentEnv }}.yaml
+        - values-{{ $env }}.yaml
+  
   destination:
     server: {{ $.Values.spec.destination.server }}
-    namespace: {{ $currentEnv }}
+    namespace: {{ $env }}
+    
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-{{- end }}
+    {{- end }}
+  {{- end }}
 {{- end }}

@@ -5,7 +5,10 @@ spec:
     repoURL: https://github.com/luans/kubernetes.git
     targetRevision: HEAD
 
-environments: dev
+environments:
+  - dev
+  - uat
+  - prod
 
 applications:
   - name: backend-api

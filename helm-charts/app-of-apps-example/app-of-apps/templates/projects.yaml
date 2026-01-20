@@ -1,0 +1,24 @@
+{{- range $env := .Values.environments }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: {{ $env }}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: "Project for {{ $env }} environment"
+  sourceRepos:
+  - '*'
+
+  destinations:
+  - namespace: {{ $env }}
+    server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist: []
+  
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+{{- end }}
