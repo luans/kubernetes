@@ -25,9 +25,10 @@ metadata:
   name: require-admin-role
   namespace: istio-ingress
 spec:
-  selector:
-    matchLabels:
-      gateway.networking.k8s.io/gateway-name: main-gateway
+  targetRef:
+    kind: Gateway
+    group: gateway.networking.k8s.io
+    name: main-gateway
   action: ALLOW
   rules:
     - to:

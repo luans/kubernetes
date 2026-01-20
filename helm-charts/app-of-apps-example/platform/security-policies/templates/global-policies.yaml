@@ -4,9 +4,10 @@ metadata:
   name: keycloak-jwt-validator
   namespace: istio-ingress
 spec:
-  selector:
-    matchLabels:
-      gateway.networking.k8s.io/gateway-name: main-gateway
+  targetRef:
+    kind: Gateway
+    group: gateway.networking.k8s.io
+    name: main-gateway
   jwtRules:
   - issuer: "https://auth-dev.modernatec.com.br/realms/poc-realm"
     jwksUri: "https://auth-dev.modernatec.com.br/realms/poc-realm/protocol/openid-connect/certs"
