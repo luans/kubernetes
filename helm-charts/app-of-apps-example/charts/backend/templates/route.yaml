@@ -35,7 +35,7 @@ spec:
           methods: ["GET"]
           paths: ["/*"]
       when:
-      - key: request.auth.claims[resource_access][minha-app-teste][roles]
+      - key: request.auth.claims[groups]
         values: ["commercial.proposal.view"]
 
 
