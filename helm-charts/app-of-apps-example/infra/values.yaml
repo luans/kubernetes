@@ -7,9 +7,9 @@ spec:
 
 applications:
   - name: platform-networking
-    path: platform/networking
+    path: helm-charts/app-of-apps-example/platform/networking
     namespace: istio-ingress
 
   - name: platform-security
-    path: platform/security-policies
+    path: helm-charts/app-of-apps-example/platform/security-policies
     namespace: istio-ingress
