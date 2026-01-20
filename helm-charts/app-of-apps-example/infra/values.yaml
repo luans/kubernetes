@@ -1,0 +1,15 @@
+spec:
+  source:
+    repoURL: https://github.com/luans/kubernetes.git
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+
+applications:
+  - name: platform-networking
+    path: platform/networking
+    namespace: istio-ingress
+
+  - name: platform-security
+    path: platform/security-policies
+    namespace: istio-ingress

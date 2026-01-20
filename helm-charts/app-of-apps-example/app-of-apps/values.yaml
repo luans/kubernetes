@@ -4,7 +4,6 @@ spec:
   source:
     repoURL: https://github.com/luans/kubernetes.git
     targetRevision: HEAD
-    #path: helm-charts/app-of-apps-example/app-of-apps
 
 environments: dev
 
@@ -20,26 +19,3 @@ applications:
     exclude:
       - prod
       - uat
-
-  - name: cluster-security
-    path: helm-charts/app-of-apps-example/platform/security-policies
-    exclude:
-      - prod
-      - uat
-
-  - name: cluster-networking
-    path: helm-charts/app-of-apps-example/platform/networking
-    exclude:
-      - prod
-      - uat
-
-  #- name: frontend-ui
-  #  path: charts/frontend
-  #  exclude:
-  #    - prod
-#
-#- name: debug-tools
-#  path: charts/debug-tools
-#  exclude:
-#    - uat
-#    - prod

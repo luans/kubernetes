@@ -4,7 +4,7 @@ metadata:
   name: app-of-apps-prod
   namespace: argocd
 spec:
-  project: default
+  project: prod
   source:
     repoURL: https://github.com/luans/kubernetes.git
     path: helm-charts/app-of-apps-example/app-of-apps
