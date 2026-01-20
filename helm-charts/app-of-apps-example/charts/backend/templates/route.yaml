@@ -28,11 +28,20 @@ spec:
   selector:
     matchLabels:
       gateway.networking.k8s.io/gateway-name: main-gateway
-  action: DENY
+  action: ALLOW
   rules:
-    - from:
-      - source:
-          notRequestPrincipals: ["*"]
+    - to:
+      - operation:
+          methods: ["GET"]
+          paths: ["/*"]
+      when:
+      - key: request.auth.claims[resource_access][minha-app-teste][roles]
+        values: ["commercial.proposal.view"]
+
+
+#    - from:
+#      - source:
+#          notRequestPrincipals: ["*"]
 #  action: ALLOW
 #  rules:
 #  - to:
