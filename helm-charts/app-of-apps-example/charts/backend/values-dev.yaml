@@ -4,5 +4,5 @@ appMessage: "Environment: Development (Debug Mode On)"
 istio:
   enabled: true
   hosts:
-    - "demo.modernatec.com.br"
+    - "demo.mycompany.com.br"
   

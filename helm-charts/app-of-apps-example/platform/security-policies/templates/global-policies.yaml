@@ -9,6 +9,6 @@ spec:
     group: gateway.networking.k8s.io
     name: main-gateway
   jwtRules:
-  - issuer: "https://auth-dev.modernatec.com.br/realms/poc-realm"
-    jwksUri: "https://auth-dev.modernatec.com.br/realms/poc-realm/protocol/openid-connect/certs"
+  - issuer: "https://auth-dev.mycompany.com.br/realms/poc-realm"
+    jwksUri: "https://auth-dev.mycompany.com.br/realms/poc-realm/protocol/openid-connect/certs"
     forwardOriginalToken: true

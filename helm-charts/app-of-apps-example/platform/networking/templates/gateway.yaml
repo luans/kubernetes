@@ -20,7 +20,7 @@ spec:
     port: 443
     protocol: HTTPS
     hostnames:
-      - "demo.modernatec.com.br"
+      - "demo.mycompany.com.br"
     allowedRoutes:
       namespaces:
         from: All

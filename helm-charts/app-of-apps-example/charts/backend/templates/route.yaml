@@ -8,7 +8,7 @@ spec:
   - name: main-gateway
     namespace: istio-ingress
   hostnames:
-  - "demo.modernatec.com.br"
+  - "demo.mycompany.com.br"
   rules:
   - matches:
     - path:
