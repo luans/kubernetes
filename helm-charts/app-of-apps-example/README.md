@@ -34,12 +34,23 @@ This implementation automatically provisions key networking components:
 - Kubernetes Cluster
 - ArgoCD installed (default namespace: `argocd`)
 
-### Deploying an Environment
+### Deploying all environments
 
-To spin up the **Development** environment:
+To spin up all environments:
 
 ```bash
 kubectl apply -f bootstrap/bootstrap-dev.yaml
+kubectl apply -f bootstrap/bootstrap-uat.yaml
+kubectl apply -f bootstrap/bootstrap-prod.yaml
+kubectl apply -f bootstrap/bootstrap-infra.yaml
+```
+
+### Install external dependencies
+
+To enable the Gateway API, run:
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.4.1/standard-install.yaml
 ```
 
 This will:
