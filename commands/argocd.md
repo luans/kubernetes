@@ -57,8 +57,52 @@ argocd account update-password
 | `argocd app delete <app-name>` | Delete an application |
 | `argocd cluster list` | List registered clusters |
 
-> [!TIP]
 > After changing the password, delete the initial secret for security:
+>
 > ```bash
 > kubectl -n argocd delete secret argocd-initial-admin-secret
 > ```
+
+## Google Integration for Authentication
+
+Create the following ConfigMap to enable Google authentication:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+data:
+  url: https://argocd.my-domain.com.br
+  admin.enabled: "false"
+  login.delegation.enabled: "true"
+  dex.config: |
+    connectors:
+      - type: google
+        id: google
+        name: Google
+        config:
+          issuer: https://accounts.google.com
+          clientID: my-client-id
+          clientSecret: my-client-secret
+          scopes:
+            - profile
+            - email
+          hostedDomains:
+            - restricted-to-my-domain.com.br
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+  namespace: argocd
+data:
+  scopes: '[email, groups]'
+  policy.csv: |
+    g, myemail@gmail.com.br, role:admin
+
+```
+
+If you disable admin login using `admin.enabled: "false"` and `login.delegation.enabled: "true"`, the login screen will show only Google as the authentication method.
