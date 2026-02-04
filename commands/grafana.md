@@ -12,9 +12,11 @@ Grafana tips and useful commands.
 
 ### Get default admin password
 
+```bash
 ➜ kubectl get secrets/prometheus-stack-grafana -n monitoring -o json | jq '.data | map_values(@base64d)'
 {
   "admin-password": "xxxxxx",
   "admin-user": "admin",
   "ldap-toml": ""
 }
+```
